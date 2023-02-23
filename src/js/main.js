@@ -4,7 +4,9 @@ const inputText = document.querySelector('.js-input');
 const btnSearch = document.querySelector('.js-btnSearch');
 const btnReset = document.querySelector('.js-btnReset');
 const cocktailsList = document.querySelector('.js-results');
+const listFavorites = document.querySelector('.js-favs');
 let cocktailsDataList = [];
+let listDataFavorites = [];
 
 //Fetch pinta margaritas por defecto
 fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
@@ -35,6 +37,14 @@ function renderCocktailList(cocktailsDataList) {
   addEventToCocktail();
 }
 
+//pintar elementos favoritos
+function renderListFavorites(cocktailsDataList) {
+  for (const cocktail of cocktailsDataList) {
+    listFavorites.innerHTML += renderCocktail(cocktail);
+  }
+  addEventToCocktail();
+}
+
 
 //pintar un elemento de la lista
 function renderCocktail(cocktail) {
@@ -49,8 +59,12 @@ function handleResetClick() {
   inputText.value = '';
 }
 
+//función seleccionar cocktail y añadir a fav
 function handleLiClick(ev) {
   ev.currentTarget.classList.toggle('selected'); 
+  const selectedCocktail = cocktailsDataList.find(cocktail => cocktail.idDrink === ev.currentTarget.id);
+  listDataFavorites.push(selectedCocktail);
+  renderListFavorites(listDataFavorites);
 }
 
 //clickar sobre el cocktail de resultados
@@ -58,9 +72,10 @@ function addEventToCocktail() {
   const liElementsList = document.querySelectorAll('.js-li-cocktails');
   for (const li of liElementsList) {
     li.addEventListener('click', handleLiClick);
-}
+  }
 }
 
+//función enter
 function handleEnterInput(ev) {
   if(ev.key === 'Enter') {
     handleSearchClick();
