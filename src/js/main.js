@@ -62,10 +62,17 @@ function handleResetClick() {
 
 //función seleccionar cocktail y añadir a fav
 function handleLiClick(ev) {
-  ev.currentTarget.classList.toggle('selected'); 
-  const selectedCocktail = cocktailsDataList.find(cocktail => cocktail.idDrink === ev.currentTarget.id);
-  listDataFavorites.push(selectedCocktail);
-  renderListFavorites(listDataFavorites);
+  ev.currentTarget.classList.toggle('selected');
+  const idSelected = ev.currentTarget.id;
+  const selectedCocktail = cocktailsDataList.find(cocktail => cocktail.idDrink === idSelected);
+  //comprobar si ya existe el fav y sino añadirlo
+  const indexCocktail = cocktailsDataList.findIndex(cocktail => cocktail.idDrink === idSelected);
+  if(indexCocktail === -1) {
+    listDataFavorites.push(selectedCocktail);
+    renderListFavorites(listDataFavorites);
+  } else { //si esta en el listado de favoritos, eliminalo
+    listDataFavorites.splice(indexCocktail, 1);
+  }
 }
 
 //clickar sobre el cocktail de resultados
