@@ -22,7 +22,6 @@ function handleSearchClick() {
 
   fetch(url).then((response) => response.json())
     .then((data) => {
-      cocktailsList.innerHTML = 'Resultados';
       cocktailsDataList = data.drinks;
       renderCocktailList(cocktailsDataList);
     }
@@ -31,6 +30,7 @@ function handleSearchClick() {
 
 //pintar todos los elementos
 function renderCocktailList(cocktailsDataList) {
+  cocktailsList.innerHTML = 'Resultados';
   for (const cocktail of cocktailsDataList) {
     cocktailsList.innerHTML += renderCocktail(cocktail);
   }
@@ -39,6 +39,7 @@ function renderCocktailList(cocktailsDataList) {
 
 //pintar elementos favoritos
 function renderListFavorites(cocktailsDataList) {
+  listFavorites.innerHTML = '';
   for (const cocktail of cocktailsDataList) {
     listFavorites.innerHTML += renderCocktail(cocktail);
   }
