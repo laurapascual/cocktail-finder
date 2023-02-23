@@ -15,7 +15,7 @@ fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
     cocktailsDataList = data.drinks;
     renderCocktailList(cocktailsDataList);
   });
-
+ 
 //Busca entre todos los cocktails
 function handleSearchClick() {
   const url = `http://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText.value}`;
@@ -38,12 +38,11 @@ function renderCocktailList(cocktailsDataList) {
 }
 
 //pintar elementos favoritos
-function renderListFavorites(cocktailsDataList) {
-  listFavorites.innerHTML = '';
-  for (const cocktail of cocktailsDataList) {
+function renderListFavorites(listDataFavorites) {
+  listFavorites.innerHTML = 'Favoritos';
+  for (const cocktail of listDataFavorites) {
     listFavorites.innerHTML += renderCocktail(cocktail);
   }
-  addEventToCocktail();
 }
 
 
@@ -65,9 +64,11 @@ function handleLiClick(ev) {
   ev.currentTarget.classList.toggle('selected');
   const idSelected = ev.currentTarget.id;
   const selectedCocktail = cocktailsDataList.find(cocktail => cocktail.idDrink === idSelected);
+
   //comprobar si ya existe el fav y sino añadirlo
   const indexCocktail = cocktailsDataList.findIndex(cocktail => cocktail.idDrink === idSelected);
-  if(indexCocktail === -1) {
+  console.log(indexCocktail);
+  if(indexCocktail > -1) {
     listDataFavorites.push(selectedCocktail);
     renderListFavorites(listDataFavorites);
   } else { //si esta en el listado de favoritos, eliminalo
