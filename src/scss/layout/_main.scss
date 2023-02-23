@@ -16,6 +16,7 @@
     display: flex;
     justify-content: center;
     gap: 10px;
+    width: 100vw;
 }
 
 .input {
@@ -34,6 +35,7 @@
     border: none;
     background-color: rgb(252, 170, 4);
     font-weight: 600;
+    cursor: pointer;
 }
 
 .input-reset {
@@ -44,6 +46,7 @@
     border: none;
     background-color: rgb(191, 172, 116);
     font-weight: 600;
+    cursor: pointer;
 }
 
 .result {

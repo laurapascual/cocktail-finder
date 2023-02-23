@@ -14,7 +14,7 @@ fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
     renderCocktailList(cocktailsDataList);
   });
 
-
+//Busca entre todos los cocktails
 function handleSearchClick() {
   const url = `http://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText.value}`;
 
@@ -37,15 +37,25 @@ function renderCocktailList(cocktailsDataList) {
 
 //pintar un elemento de la lista
 function renderCocktail(cocktail) {
-  let html =  `<li class= "title-drink">${cocktail.strDrink}</li>
-    <img src= ${cocktail.strDrinkThumb} alt= "foto cocktail" class= "img-drink"/>`;
+  let html =  `<li class="title-drink js-li-cocktais">${cocktail.strDrink}</li>
+    <img src= ${cocktail.strDrinkThumb || 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV'}  alt= "foto cocktail" class= "img-drink"/>`;
   return html;
 }
 
-
+//Botón de reset
 function handleResetClick() {
   cocktailsList.innerHTML = 'Resultados';
   inputText.value = '';
+}
+
+function handleLiClick(ev) {
+
+}
+
+
+const liElementsList = document.querySelectorAll('.js-li-cocktails');
+for (const li of liElementsList) {
+    li.addEventListener('click', handleLiClick);
 }
 
 
