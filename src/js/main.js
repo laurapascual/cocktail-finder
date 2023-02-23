@@ -31,14 +31,15 @@ function handleSearchClick() {
 function renderCocktailList(cocktailsDataList) {
   for (const cocktail of cocktailsDataList) {
     cocktailsList.innerHTML += renderCocktail(cocktail);
-}
+  }
+  addEventToCocktail();
 }
 
 
 //pintar un elemento de la lista
 function renderCocktail(cocktail) {
-  let html =  `<li class="title-drink js-li-cocktais">${cocktail.strDrink}</li>
-    <img src= ${cocktail.strDrinkThumb || 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV'}  alt= "foto cocktail" class= "img-drink"/>`;
+  let html =  `<li class="js-li-cocktails title-drink" id=${cocktail.idDrink} > ${cocktail.strDrink}
+    <img src= ${cocktail.strDrinkThumb || 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV'}  alt= "foto cocktail" class= "img-drink"/></li>`;
   return html;
 }
 
@@ -49,15 +50,25 @@ function handleResetClick() {
 }
 
 function handleLiClick(ev) {
-
+  ev.currentTarget.classList.toggle('selected'); 
 }
 
-
-const liElementsList = document.querySelectorAll('.js-li-cocktails');
-for (const li of liElementsList) {
+//clickar sobre el cocktail de resultados
+function addEventToCocktail() {
+  const liElementsList = document.querySelectorAll('.js-li-cocktails');
+  for (const li of liElementsList) {
     li.addEventListener('click', handleLiClick);
 }
+}
+
+function handleEnterInput(ev) {
+  if(ev.key === 'Enter') {
+    handleSearchClick();
+    ev.preventDefault();
+  }
+} 
 
 
 btnSearch.addEventListener('click', handleSearchClick);
 btnReset.addEventListener('click', handleResetClick);
+inputText.addEventListener('keydown', handleEnterInput);
