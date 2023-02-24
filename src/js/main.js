@@ -64,6 +64,18 @@ function renderCocktail(cocktail) {
   `<li class="js-li-cocktails title-drink" id=${cocktail.idDrink} > ${cocktail.strDrink}
     <img src= ${cocktail.strDrinkThumb || 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV'}  alt= "foto cocktail" class= "img-drink"/></li>`;
   return html;
+  /* const liElement = document.createElement('li');
+  liElement.getAttribute('class', 'js-li-cocktails title-drink');
+  liElement.getAttribute('id', cocktail.idDrink);
+  const liContent = document.createTextNode(cocktail.strDrink);
+  const imgElement = document.createElement('img');
+  imgElement.getAttribute('src', "cocktail.strDrinkThumb || 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV'");
+  imgElement.getAttribute('alt', 'foto cocktail');
+  imgElement.getAttribute('class', 'img-drink');
+  liElement.appendChild(liContent);
+  liElement.appendChild(imgElement);
+
+  return liElement; */
 }
 
 //Botón de reset
