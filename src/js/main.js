@@ -11,13 +11,7 @@ let listDataFavorites = [];
 const cocktailsStored = JSON.parse(localStorage.getItem('cocktails'));
 if(cocktailsStored) {
   cocktailsDataList = cocktailsStored;
-} else {
-  fetch(`http://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText.value}`).then((response) => response.json())
-    .then((data) => {
-      cocktailsDataList = data.drinks;
-      renderCocktailList(cocktailsDataList);
-      localStorage.setItem('cocktails', JSON.stringify(listDataFavorites));
-    })
+  renderListFavorites(listDataFavorites);
 }
 
 //Fetch pinta margaritas por defecto
@@ -27,18 +21,7 @@ fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
     cocktailsDataList = data.drinks;
     renderCocktailList(cocktailsDataList);
   });
- 
-//Busca entre todos los cocktails
-function handleSearchClick() {
-  const url = `http://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText.value}`;
 
-  fetch(url).then((response) => response.json())
-    .then((data) => {
-      cocktailsDataList = data.drinks;
-      renderCocktailList(cocktailsDataList);
-    }
-    );
-}
 
 //pintar todos los elementos
 function renderCocktailList(cocktailsDataList) {
@@ -100,6 +83,7 @@ function handleLiClick(ev) {
     listDataFavorites.splice(indexCocktail, 1);
   }
   renderListFavorites(listDataFavorites);
+  localStorage.setItem('cocktails', JSON.stringify(listDataFavorites));
 }
 
 //clickar sobre el cocktail de resultados
@@ -110,13 +94,25 @@ function addEventToCocktail() {
   }
 }
 
+//Busca entre todos los cocktails
+function handleSearchClick() {
+  const url = `http://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText.value}`;
+
+  fetch(url).then((response) => response.json())
+    .then((data) => {
+      cocktailsDataList = data.drinks;
+      renderCocktailList(cocktailsDataList);
+    }
+    );
+}
+
 //función enter
 function handleEnterInput(ev) {
   if(ev.key === 'Enter') {
     handleSearchClick();
     ev.preventDefault();
   }
-} 
+}
 
 
 btnSearch.addEventListener('click', handleSearchClick);
