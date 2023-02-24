@@ -25,54 +25,65 @@ fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
 
 //pintar todos los elementos
 function renderCocktailList(cocktailsDataList) {
-  cocktailsList.innerHTML = 'Resultados';
-  
+  cocktailsList.innerHTML = '';
   for (const cocktail of cocktailsDataList) {
-    cocktailsList.innerHTML += renderCocktail(cocktail);
-    console.log(cocktail.currentTarget);
-    /* const selectedCocktail = cocktailsDataList.find(cocktail => cocktail.idDrink === cocktail.currentTarget.id);
-    const selectedFavorite = listDataFavorites.find(cocktail =>cocktail.strDrink === cocktail.currentTarget.id);
-    if(selectedFavorite === selectedCocktail) {
-      cocktail.classList.add('selected');
-    } */
+    renderCocktail(cocktail);
   }
   addEventToCocktail();
 }
 
 //pintar elementos favoritos
 function renderListFavorites(listDataFavorites) {
-  listFavorites.innerHTML = 'Favoritos';
+  listFavorites.innerHTML = '';
   for (const cocktail of listDataFavorites) {
-    listFavorites.innerHTML += renderCocktail(cocktail);
+    renderCocktailFav(cocktail);
   }
 }
 
 
 //pintar un elemento de la lista
 function renderCocktail(cocktail) {
-  let html =
-  `<li class="js-li-cocktails title-drink" id=${cocktail.idDrink} > ${cocktail.strDrink}
-    <img src= ${cocktail.strDrinkThumb || 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV'}  alt= "foto cocktail" class= "img-drink"/></li>`;
-  return html;
-  /* const liElement = document.createElement('li');
-  liElement.getAttribute('class', 'js-li-cocktails title-drink');
-  liElement.getAttribute('id', cocktail.idDrink);
+  const selectedFavorite = listDataFavorites.find(cocktailFav => cocktailFav.strDrink === cocktail.strDrink);
+  const liElement = document.createElement('li');
+  liElement.setAttribute('class', `js-li-cocktails title-drink ${selectedFavorite && 'selected'}`);
+  liElement.setAttribute('id', cocktail.idDrink);
   const liContent = document.createTextNode(cocktail.strDrink);
   const imgElement = document.createElement('img');
-  imgElement.getAttribute('src', "cocktail.strDrinkThumb || 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV'");
-  imgElement.getAttribute('alt', 'foto cocktail');
-  imgElement.getAttribute('class', 'img-drink');
+  imgElement.setAttribute('src', cocktail.strDrinkThumb || 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV');
+  imgElement.setAttribute('alt', 'foto cocktail');
+  imgElement.setAttribute('class', 'img-drink');
   liElement.appendChild(liContent);
   liElement.appendChild(imgElement);
-
-  return liElement; */
+  cocktailsList.appendChild(liElement);
+  
 }
+
+function renderCocktailFav(cocktail) {
+  const liElement = document.createElement('li');
+  liElement.setAttribute('class', 'title-drink');
+  liElement.setAttribute('id', cocktail.idDrink);
+  const liContent = document.createTextNode(cocktail.strDrink);
+  const imgElement = document.createElement('img');
+  imgElement.setAttribute('src', cocktail.strDrinkThumb || 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV');
+  imgElement.setAttribute('alt', 'foto cocktail');
+  imgElement.setAttribute('class', 'img-drink');
+  const iconElement = document.createElement('i');
+  iconElement.setAttribute('class','fa-solid fa-circle-xmark');
+
+  liElement.appendChild(liContent);
+  liElement.appendChild(iconElement);
+  liElement.appendChild(imgElement);
+  listFavorites.appendChild(liElement);
+}
+
+
 
 //Botón de reset
 function handleResetClick() {
-  cocktailsList.innerHTML = 'Resultados';
-  listFavorites.innerHTML = 'Favoritos';
+  cocktailsList.innerHTML = '';
+  listFavorites.innerHTML = '';
   inputText.value = '';
+  localStorage.removeItem('cocktails');
 }
 
 //función seleccionar cocktail y añadir a fav
@@ -89,8 +100,6 @@ function handleLiClick(ev) {
   }
   renderListFavorites(listDataFavorites);
   localStorage.setItem('cocktails', JSON.stringify(listDataFavorites));
-
-  
 }
 
 //clickar sobre el cocktail de resultados

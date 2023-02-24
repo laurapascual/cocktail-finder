@@ -83,6 +83,10 @@
     justify-content: center;
     padding-bottom: 10px;
     gap: 5px;
+    position: relative;
+    text-overflow: ellipsis;
+    width: 200px;
+    text-align: center;
 }
 
 .img-drink {
@@ -96,3 +100,14 @@
     color: white;
     margin: 10px;
 }
+
+.fa-circle-xmark {
+    width: 15px;
+    height: 15px;
+    border: 5px;
+    color: pink;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 15px;
+}  
