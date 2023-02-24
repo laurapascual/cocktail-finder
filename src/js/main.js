@@ -10,18 +10,26 @@ let listDataFavorites = [];
 
 const cocktailsStored = JSON.parse(localStorage.getItem('cocktails'));
 if(cocktailsStored) {
-  cocktailsDataList = cocktailsStored;
+  listDataFavorites = cocktailsStored;
   renderListFavorites(listDataFavorites);
 }
 
-//Fetch pinta margaritas por defecto
-fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
-  .then((response) => response.json())
-  .then((data) => {
-    cocktailsDataList = data.drinks;
-    renderCocktailList(cocktailsDataList);
-  });
+function fetchCocktails(url) {
+  fetch(url).then((response) => response.json())
+    .then((data) => {
+      cocktailsDataList = data.drinks;
+      renderCocktailList(cocktailsDataList);
+    }
+    );
+}
 
+//Busca entre todos los cocktails
+function handleSearchClick() {
+  const url = `http://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText.value}`;
+  fetchCocktails(url);
+}
+
+fetchCocktails('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita');
 
 //pintar todos los elementos
 function renderCocktailList(cocktailsDataList) {
@@ -78,8 +86,6 @@ function renderCocktailFav(cocktail) {
   listFavorites.appendChild(liElement);
 }
 
-
-
 //Botón de reset
 function handleResetClick() {
   cocktailsList.innerHTML = '';
@@ -123,24 +129,12 @@ function addEventToIcon() {
 function handleIconClick(ev) {
   const idSelected = ev.currentTarget.id;
   const indexCocktail = listDataFavorites.findIndex(cocktail => cocktail.idDrink === idSelected);
-  console.log(listDataFavorites);
   if(indexCocktail !== -1) {
     listDataFavorites.splice(indexCocktail, 1);
   }
   renderListFavorites(listDataFavorites);
   renderCocktailList(cocktailsDataList);
-}
-
-//Busca entre todos los cocktails
-function handleSearchClick() {
-  const url = `http://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText.value}`;
-
-  fetch(url).then((response) => response.json())
-    .then((data) => {
-      cocktailsDataList = data.drinks;
-      renderCocktailList(cocktailsDataList);
-    }
-    );
+  localStorage.setItem('cocktails', JSON.stringify(listDataFavorites));
 }
 
 //función enter
