@@ -48,7 +48,8 @@ function renderListFavorites(listDataFavorites) {
 
 //pintar un elemento de la lista
 function renderCocktail(cocktail) {
-  let html =  `<li class="js-li-cocktails title-drink" id=${cocktail.idDrink} > ${cocktail.strDrink}
+  let html =
+  `<li class="js-li-cocktails title-drink" id=${cocktail.idDrink} > ${cocktail.strDrink}
     <img src= ${cocktail.strDrinkThumb || 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV'}  alt= "foto cocktail" class= "img-drink"/></li>`;
   return html;
 }
@@ -66,14 +67,14 @@ function handleLiClick(ev) {
   const selectedCocktail = cocktailsDataList.find(cocktail => cocktail.idDrink === idSelected);
 
   //comprobar si ya existe el fav y sino añadirlo
-  const indexCocktail = cocktailsDataList.findIndex(cocktail => cocktail.idDrink === idSelected);
+  const indexCocktail = listDataFavorites.findIndex(cocktail => cocktail.idDrink === idSelected);
   console.log(indexCocktail);
-  if(indexCocktail > -1) {
+  if(indexCocktail === -1) {
     listDataFavorites.push(selectedCocktail);
-    renderListFavorites(listDataFavorites);
   } else { //si esta en el listado de favoritos, eliminalo
     listDataFavorites.splice(indexCocktail, 1);
   }
+  renderListFavorites(listDataFavorites);
 }
 
 //clickar sobre el cocktail de resultados
