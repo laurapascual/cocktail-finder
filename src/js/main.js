@@ -8,6 +8,18 @@ const listFavorites = document.querySelector('.js-favs');
 let cocktailsDataList = [];
 let listDataFavorites = [];
 
+const cocktailsStored = JSON.parse(localStorage.getItem('cocktails'));
+if(cocktailsStored) {
+  cocktailsDataList = cocktailsStored;
+} else {
+  fetch(`http://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText.value}`).then((response) => response.json())
+    .then((data) => {
+      cocktailsDataList = data.drinks;
+      renderCocktailList(cocktailsDataList);
+      localStorage.setItem('cocktails', JSON.stringify(listDataFavorites));
+    })
+}
+
 //Fetch pinta margaritas por defecto
 fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
   .then((response) => response.json())
@@ -57,6 +69,7 @@ function renderCocktail(cocktail) {
 //Botón de reset
 function handleResetClick() {
   cocktailsList.innerHTML = 'Resultados';
+  listFavorites.innerHTML = 'Favoritos';
   inputText.value = '';
 }
 
