@@ -26,8 +26,15 @@ fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
 //pintar todos los elementos
 function renderCocktailList(cocktailsDataList) {
   cocktailsList.innerHTML = 'Resultados';
+  
   for (const cocktail of cocktailsDataList) {
     cocktailsList.innerHTML += renderCocktail(cocktail);
+    console.log(cocktail.currentTarget);
+    /* const selectedCocktail = cocktailsDataList.find(cocktail => cocktail.idDrink === cocktail.currentTarget.id);
+    const selectedFavorite = listDataFavorites.find(cocktail =>cocktail.strDrink === cocktail.currentTarget.id);
+    if(selectedFavorite === selectedCocktail) {
+      cocktail.classList.add('selected');
+    } */
   }
   addEventToCocktail();
 }
@@ -73,10 +80,8 @@ function handleLiClick(ev) {
   ev.currentTarget.classList.toggle('selected');
   const idSelected = ev.currentTarget.id;
   const selectedCocktail = cocktailsDataList.find(cocktail => cocktail.idDrink === idSelected);
-
   //comprobar si ya existe el fav y sino añadirlo
   const indexCocktail = listDataFavorites.findIndex(cocktail => cocktail.idDrink === idSelected);
-  console.log(indexCocktail);
   if(indexCocktail === -1) {
     listDataFavorites.push(selectedCocktail);
   } else { //si esta en el listado de favoritos, eliminalo
@@ -84,6 +89,8 @@ function handleLiClick(ev) {
   }
   renderListFavorites(listDataFavorites);
   localStorage.setItem('cocktails', JSON.stringify(listDataFavorites));
+
+  
 }
 
 //clickar sobre el cocktail de resultados
