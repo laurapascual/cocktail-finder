@@ -38,6 +38,7 @@ function renderListFavorites(listDataFavorites) {
   for (const cocktail of listDataFavorites) {
     renderCocktailFav(cocktail);
   }
+  addEventToIcon();
 }
 
 
@@ -68,7 +69,8 @@ function renderCocktailFav(cocktail) {
   imgElement.setAttribute('alt', 'foto cocktail');
   imgElement.setAttribute('class', 'img-drink');
   const iconElement = document.createElement('i');
-  iconElement.setAttribute('class','fa-solid fa-circle-xmark');
+  iconElement.setAttribute('class','fa-solid fa-circle-xmark js-icons');
+  iconElement.setAttribute('id', cocktail.idDrink);
 
   liElement.appendChild(liContent);
   liElement.appendChild(iconElement);
@@ -110,6 +112,25 @@ function addEventToCocktail() {
   }
 }
 
+//clickar sobre el icono x
+function addEventToIcon() {
+  const icons = document.querySelectorAll('.js-icons');
+  for (const icon of icons) {
+    icon.addEventListener('click',handleIconClick);
+  }
+}
+
+function handleIconClick(ev) {
+  const idSelected = ev.currentTarget.id;
+  const indexCocktail = listDataFavorites.findIndex(cocktail => cocktail.idDrink === idSelected);
+  console.log(listDataFavorites);
+  if(indexCocktail !== -1) {
+    listDataFavorites.splice(indexCocktail, 1);
+  }
+  renderListFavorites(listDataFavorites);
+  renderCocktailList(cocktailsDataList);
+}
+
 //Busca entre todos los cocktails
 function handleSearchClick() {
   const url = `http://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText.value}`;
@@ -129,7 +150,6 @@ function handleEnterInput(ev) {
     ev.preventDefault();
   }
 }
-
 
 btnSearch.addEventListener('click', handleSearchClick);
 btnReset.addEventListener('click', handleResetClick);

@@ -87,6 +87,7 @@
     text-overflow: ellipsis;
     width: 200px;
     text-align: center;
+        margin-top: 10px;
 }
 
 .img-drink {
@@ -98,7 +99,6 @@
 .selected {
     background-color: pink;
     color: white;
-    margin: 10px;
 }
 
 .fa-circle-xmark {
@@ -109,5 +109,5 @@
     cursor: pointer;
     position: absolute;
     right: 0;
-    top: 15px;
+    top: 0;
 }  
