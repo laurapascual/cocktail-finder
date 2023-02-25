@@ -5,6 +5,7 @@ const btnSearch = document.querySelector('.js-btnSearch');
 const btnReset = document.querySelector('.js-btnReset');
 const cocktailsList = document.querySelector('.js-results');
 const listFavorites = document.querySelector('.js-favs');
+const btnFavorites = document.querySelector('.js-button');
 let cocktailsDataList = [];
 let listDataFavorites = [];
 
@@ -137,6 +138,11 @@ function handleIconClick(ev) {
   localStorage.setItem('cocktails', JSON.stringify(listDataFavorites));
 }
 
+function handleDeleteClick() {
+    listFavorites.innerHTML = '';
+}
+
+
 //función enter
 function handleEnterInput(ev) {
   if(ev.key === 'Enter') {
@@ -148,3 +154,4 @@ function handleEnterInput(ev) {
 btnSearch.addEventListener('click', handleSearchClick);
 btnReset.addEventListener('click', handleResetClick);
 inputText.addEventListener('keydown', handleEnterInput);
+btnFavorites.addEventListener('click', handleDeleteClick);
