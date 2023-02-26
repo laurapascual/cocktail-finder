@@ -10,6 +10,7 @@ const msgError = document.querySelector('.js-msg-error');
 let cocktailsDataList = [];
 let listDataFavorites = [];
 
+//Recoger lista de favoritos en el Local Storage
 const cocktailsStored = JSON.parse(localStorage.getItem('cocktails'));
 if(cocktailsStored) {
   listDataFavorites = cocktailsStored;
@@ -17,6 +18,7 @@ if(cocktailsStored) {
   renderListFavorites(listDataFavorites);
 }
 
+//Fetch + Mensaje de error si no hay resultados
 function fetchCocktails(url) {
   fetch(url).then((response) => response.json())
     .then((data) => {
@@ -40,9 +42,10 @@ function handleSearchClick() {
   fetchCocktails(url);
 }
 
+//Margaritas por defecto
 fetchCocktails('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita');
 
-//pintar todos los elementos
+//Pintar todos los elementos
 function renderCocktailList(cocktailsDataList) {
   cocktailsList.innerHTML = '';
   for (const cocktail of cocktailsDataList) {
@@ -51,7 +54,7 @@ function renderCocktailList(cocktailsDataList) {
   addEventToCocktail();
 }
 
-//pintar elementos favoritos
+//Pintar elementos favoritos
 function renderListFavorites(listDataFavorites) {
   listFavorites.innerHTML = '';
   for (const cocktail of listDataFavorites) {
@@ -61,11 +64,11 @@ function renderListFavorites(listDataFavorites) {
 }
 
 
-//pintar un elemento de la lista
+//Pintar un elemento de la lista
 function renderCocktail(cocktail) {
   const selectedFavorite = listDataFavorites.find(cocktailFav => cocktailFav.strDrink === cocktail.strDrink);
   const liElement = document.createElement('li');
-  liElement.setAttribute('class', `js-li-cocktails title-drink title-hover ${selectedFavorite && 'selected'}`);
+  liElement.setAttribute('class', `js-li-cocktails title-drink title-hover ${selectedFavorite && 'selected'}`); //Marcar como seleccionado
   liElement.setAttribute('id', cocktail.idDrink);
   const liContent = document.createTextNode(cocktail.strDrink);
   const imgElement = document.createElement('img');
@@ -77,6 +80,7 @@ function renderCocktail(cocktail) {
   cocktailsList.appendChild(liElement);
 }
 
+//Pintar un elemento de la lista de favoritos
 function renderCocktailFav(cocktail) {
   const liElement = document.createElement('li');
   liElement.setAttribute('class', 'title-drink');
@@ -108,7 +112,7 @@ function handleResetClick() {
   renderCocktailList(cocktailsDataList);
 }
 
-//esconder el btn de eliminar fav
+//Esconder el btn de eliminar fav
 function hideFavBtn() {
   if(listDataFavorites.length === 0) {
     btnFavorites.classList.add('hidden');
@@ -117,16 +121,16 @@ function hideFavBtn() {
   }
 }
 
-//función seleccionar cocktail y añadir a fav
+//Función seleccionar cocktail y añadir a fav
 function handleLiClick(ev) {
   ev.currentTarget.classList.toggle('selected');
   const idSelected = ev.currentTarget.id;
   const selectedCocktail = cocktailsDataList.find(cocktail => cocktail.idDrink === idSelected);
-  //comprobar si ya existe el fav y sino añadirlo
+  //Comprobar si ya existe el fav y sino añadirlo
   const indexCocktail = listDataFavorites.findIndex(cocktail => cocktail.idDrink === idSelected);
   if(indexCocktail === -1) {
     listDataFavorites.push(selectedCocktail);
-  } else { //si esta en el listado de favoritos, eliminalo
+  } else { //Si esta en el listado de favoritos, elimínalo
     listDataFavorites.splice(indexCocktail, 1);
   }
   hideFavBtn();
@@ -134,7 +138,7 @@ function handleLiClick(ev) {
   localStorage.setItem('cocktails', JSON.stringify(listDataFavorites));
 }
 
-//clickar sobre el cocktail de resultados
+//Clickar sobre el cocktail de resultados
 function addEventToCocktail() {
   const liElementsList = document.querySelectorAll('.js-li-cocktails');
   for (const li of liElementsList) {
@@ -142,7 +146,7 @@ function addEventToCocktail() {
   }
 }
 
-//clickar sobre el icono x
+//Clickar sobre el icono x
 function addEventToIcon() {
   const icons = document.querySelectorAll('.js-icons');
   for (const icon of icons) {
@@ -150,7 +154,7 @@ function addEventToIcon() {
   }
 }
 
-//eliminar de la lista pulsando el icono
+//Eliminar de la lista pulsando el icono
 function handleIconClick(ev) {
   const idSelected = ev.currentTarget.id;
   const indexCocktail = listDataFavorites.findIndex(cocktail => cocktail.idDrink === idSelected);
@@ -163,7 +167,7 @@ function handleIconClick(ev) {
   localStorage.setItem('cocktails', JSON.stringify(listDataFavorites));
 }
 
-//eliminar todos los fav del botón
+//Eliminar todos los fav del botón
 function handleDeleteClick() {
   listDataFavorites = [];
   localStorage.removeItem('cocktails');
@@ -173,7 +177,7 @@ function handleDeleteClick() {
 }
 
 
-//función enter
+//Función enter, evitar refrescar
 function handleEnterInput(ev) {
   if(ev.key === 'Enter') {
     handleSearchClick();
