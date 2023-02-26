@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Cócteles</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;600&display=swap"
+			rel="stylesheet"
+		/>
+		<script
+			src="https://kit.fontawesome.com/a5f3fa4005.js"
+			crossorigin="anonymous"
+		></script>
+		<link rel="stylesheet" href="./assets/css/main.css" />
+		<link rel="icon" href="./assets/images/favicon.png" />
+	</head>
+
+	<body>
+		<header class="header"></header>
+
+		<main class="main">
+			<h1 class="title">Cocktails</h1>
+			<img
+				src="./assets/images/csm_Cocktail-c-Shutterstock-2640_743a80438f.jpg"
+				alt="Cocktails"
+				class="img"
+			/>
+			<form action="" class="form">
+				<label for="input">
+					<input type="text" id="input" class="input js-input" />
+				</label>
+				<fieldset class="fieldset">
+					<label for="search">
+						<input
+							type="button"
+							value="Buscar"
+							id="search"
+							class="input-search js-btnSearch"
+						/>
+					</label>
+					<label for="reset">
+						<input
+							type="button"
+							value="Reset"
+							id="reset"
+							class="input-reset js-btnReset"
+						/>
+					</label>
+				</fieldset>
+			</form>
+			<p class="error js-msg-error"></p>
+			<div class="result">
+				<div class="drinks-favs">
+					<h1>Favoritos</h1>
+					<ul class="drinks-favs js-favs"></ul>
+					<button class="js-button button hidden">Borrar favoritos</button>
+				</div>
+				<div class="drinks-result">
+					<h1>Resultados</h1>
+					<ul class="drinks-result js-results"></ul>
+				</div>
+			</div>
+		</main>
+
+		<footer class="footer">
+
+		</footer>
+		<script src="./assets/js/main.js"></script>
+	</body>
+</html>
