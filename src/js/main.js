@@ -157,6 +157,7 @@ function handleIconClick(ev) {
   if(indexCocktail !== -1) {
     listDataFavorites.splice(indexCocktail, 1);
   }
+  hideFavBtn();
   renderListFavorites(listDataFavorites);
   renderCocktailList(cocktailsDataList);
   localStorage.setItem('cocktails', JSON.stringify(listDataFavorites));
