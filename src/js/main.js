@@ -6,6 +6,7 @@ const btnReset = document.querySelector('.js-btnReset');
 const cocktailsList = document.querySelector('.js-results');
 const listFavorites = document.querySelector('.js-favs');
 const btnFavorites = document.querySelector('.js-button');
+const msgError = document.querySelector('.js-msg-error');
 let cocktailsDataList = [];
 let listDataFavorites = [];
 
@@ -18,8 +19,13 @@ if(cocktailsStored) {
 function fetchCocktails(url) {
   fetch(url).then((response) => response.json())
     .then((data) => {
-      cocktailsDataList = data.drinks;
-      renderCocktailList(cocktailsDataList);
+      if(data.drinks !== 'null') {
+        cocktailsDataList = data.drinks;
+        renderCocktailList(cocktailsDataList);
+      }
+      else {
+        msgError.innerHTML = 'No hay se ha encontrado ningún dato';
+      }
     }
     );
 }
@@ -65,7 +71,6 @@ function renderCocktail(cocktail) {
   liElement.appendChild(liContent);
   liElement.appendChild(imgElement);
   cocktailsList.appendChild(liElement);
-  
 }
 
 function renderCocktailFav(cocktail) {
@@ -127,6 +132,7 @@ function addEventToIcon() {
   }
 }
 
+//eliminar de la lista pulsando el icono
 function handleIconClick(ev) {
   const idSelected = ev.currentTarget.id;
   const indexCocktail = listDataFavorites.findIndex(cocktail => cocktail.idDrink === idSelected);
@@ -138,8 +144,12 @@ function handleIconClick(ev) {
   localStorage.setItem('cocktails', JSON.stringify(listDataFavorites));
 }
 
+//eliminar todos los fav del botón
 function handleDeleteClick() {
-    listFavorites.innerHTML = '';
+  listFavorites.innerHTML = '';
+  /* const liEl = document.querySelector('.js-li-cocktails');
+  liEl.classList.remove('selected'); */
+  localStorage.removeItem('cocktails');
 }
 
 
