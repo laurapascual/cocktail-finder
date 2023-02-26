@@ -97,11 +97,13 @@ function renderCocktailFav(cocktail) {
 
 //Botón de reset
 function handleResetClick() {
-  cocktailsList.innerHTML = '';
-  listFavorites.innerHTML = '';
+  listDataFavorites = [];
+  cocktailsDataList = [];
   inputText.value = '';
   msgError.innerHTML = '';
   localStorage.removeItem('cocktails');
+  renderListFavorites(listDataFavorites);
+  renderCocktailList(cocktailsDataList);
 }
 
 //función seleccionar cocktail y añadir a fav
