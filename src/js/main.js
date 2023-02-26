@@ -102,6 +102,7 @@ function handleResetClick() {
   cocktailsDataList = [];
   inputText.value = '';
   msgError.innerHTML = '';
+  hideFavBtn();
   localStorage.removeItem('cocktails');
   renderListFavorites(listDataFavorites);
   renderCocktailList(cocktailsDataList);
