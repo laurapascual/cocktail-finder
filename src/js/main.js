@@ -13,6 +13,7 @@ let listDataFavorites = [];
 const cocktailsStored = JSON.parse(localStorage.getItem('cocktails'));
 if(cocktailsStored) {
   listDataFavorites = cocktailsStored;
+  hideFavBtn();
   renderListFavorites(listDataFavorites);
 }
 
@@ -106,6 +107,15 @@ function handleResetClick() {
   renderCocktailList(cocktailsDataList);
 }
 
+//esconder el btn de eliminar fav
+function hideFavBtn() {
+  if(listDataFavorites.length === 0) {
+    btnFavorites.classList.add('hidden');
+  } else {
+    btnFavorites.classList.remove('hidden');
+  }
+}
+
 //función seleccionar cocktail y añadir a fav
 function handleLiClick(ev) {
   ev.currentTarget.classList.toggle('selected');
@@ -118,6 +128,7 @@ function handleLiClick(ev) {
   } else { //si esta en el listado de favoritos, eliminalo
     listDataFavorites.splice(indexCocktail, 1);
   }
+  hideFavBtn();
   renderListFavorites(listDataFavorites);
   localStorage.setItem('cocktails', JSON.stringify(listDataFavorites));
 }
@@ -154,6 +165,7 @@ function handleIconClick(ev) {
 function handleDeleteClick() {
   listDataFavorites = [];
   localStorage.removeItem('cocktails');
+  hideFavBtn();
   renderListFavorites(listDataFavorites);
   renderCocktailList(cocktailsDataList);
 }
