@@ -146,10 +146,10 @@ function handleIconClick(ev) {
 
 //eliminar todos los fav del botón
 function handleDeleteClick() {
-  listFavorites.innerHTML = '';
-  /* const liEl = document.querySelector('.js-li-cocktails');
-  liEl.classList.remove('selected'); */
+  listDataFavorites = [];
   localStorage.removeItem('cocktails');
+  renderListFavorites(listDataFavorites);
+  renderCocktailList(cocktailsDataList);
 }
 
 
