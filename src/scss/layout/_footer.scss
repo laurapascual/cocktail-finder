@@ -1,2 +1,15 @@
 .footer {
+    font-family: $font-main;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 40px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    background: rgb(252, 170, 4);
+    background: radial-gradient(circle, rgba(252, 170, 4, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
 }
