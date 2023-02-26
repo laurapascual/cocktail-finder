@@ -65,7 +65,7 @@ function renderListFavorites(listDataFavorites) {
 function renderCocktail(cocktail) {
   const selectedFavorite = listDataFavorites.find(cocktailFav => cocktailFav.strDrink === cocktail.strDrink);
   const liElement = document.createElement('li');
-  liElement.setAttribute('class', `js-li-cocktails title-drink ${selectedFavorite && 'selected'}`);
+  liElement.setAttribute('class', `js-li-cocktails title-drink title-hover ${selectedFavorite && 'selected'}`);
   liElement.setAttribute('id', cocktail.idDrink);
   const liContent = document.createTextNode(cocktail.strDrink);
   const imgElement = document.createElement('img');

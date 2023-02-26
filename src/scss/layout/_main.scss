@@ -1,28 +1,4 @@
 
-.title {
-    font-family: $font-main;
-    background-color: pink;
-    height: 80px;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 50px;
-    padding: 10px;
-    font-weight: 600;
-    @media (min-width: $breakpoint-tablet) {
-            font-size: 70px;
-        }
-    @media (min-width: $breakpoint-desktop) {
-        font-size: 80px;
-    }
-}
-
-.img {
-    width: 100vw;
-}
-
 .form {
     display: flex;
     flex-direction: column;
@@ -56,6 +32,9 @@
     font-weight: 600;
     cursor: pointer;
 }
+.input-search:hover {
+    background-color: rgb(236, 189, 95);
+}
 
 .input-reset {
     font-family: $font-main;
@@ -67,6 +46,10 @@
     background-color: rgb(191, 172, 116);
     font-weight: 600;
     cursor: pointer;
+}
+
+.input-reset:hover {
+    background-color: rgb(212, 200, 163);
 }
 
 .result {
@@ -116,10 +99,15 @@
     text-overflow: ellipsis;
     text-align: center;
     margin-top: 10px;
+    cursor: pointer;
     @media (min-width: $breakpoint-tablet) {
             font-size: 25px;
             width: 200px;
         }
+}
+
+.title-hover:hover {
+    color: rgb(255, 115, 136);
 }
 
 .img-drink {
@@ -149,15 +137,23 @@
     top: 0;
 }  
 
+.fa-circle-xmark:hover {
+    color: rgb(255, 115, 136);
+}
+
 .button {
     height: 60px;
     width: 100px;
     font-size: 20px;
     border-radius: 5px;
     border: none;
-    background-color: rgb(230, 185, 192);
+    background-color: rgb(255, 115, 136);
     font-weight: 600;
     cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(252, 155, 169);
 }
 
 .hidden {
