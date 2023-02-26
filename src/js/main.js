@@ -19,12 +19,15 @@ if(cocktailsStored) {
 function fetchCocktails(url) {
   fetch(url).then((response) => response.json())
     .then((data) => {
-      if(data.drinks !== 'null') {
+      if(data.drinks) {
         cocktailsDataList = data.drinks;
         renderCocktailList(cocktailsDataList);
+        msgError.innerHTML = '';
       }
       else {
-        msgError.innerHTML = 'No hay se ha encontrado ningún dato';
+        msgError.innerHTML = 'No se han encontrado resultados para esa búsqueda';
+        cocktailsDataList = [];
+        renderCocktailList(cocktailsDataList);
       }
     }
     );
@@ -97,6 +100,7 @@ function handleResetClick() {
   cocktailsList.innerHTML = '';
   listFavorites.innerHTML = '';
   inputText.value = '';
+  msgError.innerHTML = '';
   localStorage.removeItem('cocktails');
 }
 
