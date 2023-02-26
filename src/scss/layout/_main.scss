@@ -12,10 +12,12 @@
 }
 
 .input {
+    font-family: $font-main;
     width: 280px;
     height: 40px;
     border-radius: 5px;
     font-size: 20px;
+    padding-left: 10px;
     @media (min-width: $breakpoint-tablet) {
         width: 350px;
     }
