@@ -7,6 +7,7 @@ const cocktailsList = document.querySelector('.js-results');
 const listFavorites = document.querySelector('.js-favs');
 const btnFavorites = document.querySelector('.js-button');
 const msgError = document.querySelector('.js-msg-error');
+const btnLog = document.querySelector('.js-btnLog');
 let cocktailsDataList = [];
 let listDataFavorites = [];
 
@@ -75,7 +76,13 @@ function renderCocktail(cocktail) {
   imgElement.setAttribute('src', cocktail.strDrinkThumb || 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV');
   imgElement.setAttribute('alt', 'foto cocktail');
   imgElement.setAttribute('class', 'img-drink');
+  const pElement = document.createElement('p');
+  const pContent = document.createTextNode(cocktail.strInstructions);
+  pElement.setAttribute('class', 'letter');
+
   liElement.appendChild(liContent);
+  liElement.appendChild(pElement);
+  pElement.appendChild(pContent);
   liElement.appendChild(imgElement);
   cocktailsList.appendChild(liElement);
 }
@@ -185,7 +192,14 @@ function handleEnterInput(ev) {
   }
 }
 
+function handleFavConsole() {
+  for ( const item of listDataFavorites) {
+    console.log(item.strDrink);
+  }
+}
+
 btnSearch.addEventListener('click', handleSearchClick);
 btnReset.addEventListener('click', handleResetClick);
 inputText.addEventListener('keydown', handleEnterInput);
 btnFavorites.addEventListener('click', handleDeleteClick);
+btnLog.addEventListener('click', handleFavConsole);
