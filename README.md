@@ -1,57 +1,34 @@
-![Adalab](https://beta.adalab.es/resources/images/adalab-logo-155x61-bg-white.png)
+# Find your favorite cocktails🍹 
 
-# Evaluación Módulo 2 Laura Pascual
+This is my first individual web page with **HTML, SASS and JS**.
 
-En esta evaluación he desarrollado mi primera página web individual con **HTML, Sass y JS**.
+## What is it about? ❓
 
-## Requerimientos 📋
+It is a web application that contains a list of drinks and cocktails from around the world, which allows us to de/mark drinks as favorites and save them in local storage.
 
-Desarrollar una aplicación web que contenga un listado de las bebidas y cócteles de todo el mundo, que nos permita des/marcar las bebidas como favoritas y guardarlas en el local storage.
+## What can you find? 🔎
 
-## Criterios de evaluación ✏️
+- Adequate structure of files and folders for a web project, correctly linked.
 
-### General
+- Perfectly indented code.
 
-- Usar una estructura adecuada de ficheros y carpetas para un proyecto web, y enlazar bien los distintos ficheros.
+- JavaScript code with correct and well-structured syntax.
 
-- Tener el código perfectamente indentado.
+- Constants / variables to store information and re-assign values.
 
-- Uso de control de versiones con ramas para manejar un proyecto de código.
+- Conditionals to execute different actions based on a condition.
 
-### JavaScript básico
+- Data Lists (arrays).
 
-- Crear código JavaScript con sintaxis correcta y bien estructurado.
+- DOM.
 
-- Usar constantes / variables para almacenar información y re-asignar valores.
+- Petitions with fetch and promises.
 
-- Usar condicionales para ejecutar acciones distintas en función de una condición.
+- Information management in JSON format.
 
-- Saber trabajar con listados de datos (arrays).
+- Local Storage to save information in the browser.
 
-- Usar funciones para estructurar el código.
-
-- Saber modificar la información del DOM para añadir contenido dinámico.
-
-- Saber escuchar eventos del DOM y actuar en consecuencia.
-
-### Peticiones AJAX y APIs
-
-- Crear peticiones con fetch y promesas.
-
-- Saber trabajar correctamente con la respuesta del servidor.
-
-- Gestionar información en formato JSON.
-
-- Usar el localStorage para guardar información en el navegador.
-
-### Otros criterios a tener en cuenta
-
-- Usar inglés para nombres de variables, funciones, clases, mensajes de commit, nombres de ficheros.
-
-- El repositorio de GitHub debe tener README explicando muy brevemente cómo arrancar el proyecto.
-
-
-## Construido con 🛠️
+## Build with 🛠️
 
 - HTML
 - Scss
@@ -59,4 +36,4 @@ Desarrollar una aplicación web que contenga un listado de las bebidas y cóctel
 - NPM
 - GitHub Pages
 
-## Espero que os guste 🤓
+## I hope you like it 🍸
