@@ -1,24 +1,19 @@
 .title {
     font-family: $font-main;
-    background-color: pink;
-    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     padding: 10px;
     font-weight: 600;
 
     @media (min-width: $breakpoint-tablet) {
-        font-size: 70px;
+        font-size: 60px;
     }
 
     @media (min-width: $breakpoint-desktop) {
-        font-size: 80px;
+        font-size: 60px;
     }
 }
 
-.img {
-    width: 98vw;
-}
