@@ -38,7 +38,7 @@ function fetchCocktails(url) {
 
 //Busca entre todos los cocktails
 function handleSearchClick() {
-  const url = `http://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText.value}`;
+  const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText.value}`;
   fetchCocktails(url);
 }
 
